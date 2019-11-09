@@ -1,4 +1,4 @@
-# ria_convae
+# RIA ConVAE project
 
 In this repository I'll upload everything related to my Research Internship Abroad (RIA) project. This internship started on 01/10/2019 and will end on 20/12/2019.
 
