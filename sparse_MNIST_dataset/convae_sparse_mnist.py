@@ -173,10 +173,10 @@ plt.xlabel('Epoch')
 plt.ylabel('A. U.')
 plt.title('Loss Function Components')
 plt.legend()
-plt.savefig('other_train_graph_oei_rep_onlypos_k0p5_beta1p0.png')
+plt.savefig('loss_components_graph.png')
 
 # Save the model
-torch.save(model.state_dict(), "test_model.pt")
+torch.save(model.state_dict(), "model.pt")
 
 sum = 0
 
@@ -208,7 +208,7 @@ for o in range(batch_size):
     plt.imshow(train_image[o, 0, :, :], cmap='gray')
     plt.colorbar()
     plt.axis('off')
-plt.savefig('image_sparse_file_mnist_withintense_train_eucl_changed_oei_diffnet_lessunit_sigmoid_withgraph_repulsive_onlypos_k0p5_latdim'+str(latent_dim)+'_beta1p0_'+str(num_files * batch_size)+'_'+str(num_epochs)+'.png')
+plt.savefig('image_sparse_train_eucl_sym_100.png')
 
 output_test_image = torch.zeros(batch_size, 1, 28, 28).cuda()
 
@@ -226,7 +226,7 @@ for o in range(batch_size):
     plt.imshow(test_image[o, 0, :, :], cmap='gray')
     plt.colorbar()
     plt.axis('off')
-plt.savefig('image_sparse_file_mnist_withintense_test_eucl_changed_oei_diffnet_lessunit_sigmoid_withgraph_repulsive_onlypos_k0p5_latdim'+str(latent_dim)+'_beta1p0_'+str(num_files * batch_size)+'_'+str(num_epochs)+'.png')
+plt.savefig('image_sparse_test_eucl_sym_100.png')
 
 # This will generate images from a vector of dimension latent_dim, where each entry is sampled from a standard gaussian (mean = 0.0 and stddev = 1.0)
 z = torch.randn(batch_size, latent_dim).cuda()
@@ -247,7 +247,7 @@ for o in range(batch_size):
     plt.imshow(gaussian_image[o, 0, :, :], cmap='gray')
     plt.colorbar()
     plt.axis('off')
-plt.savefig('image_sparse_file_mnist_withintense_gaussian_zchanged_eucl_changed_oei_diffnet_lessunit_sigmoid_withgraph_repulsive_onlypos_k0p5_latdim'+str(latent_dim)+'_beta1p0_'+str(num_files * batch_size)+'_'+str(num_epochs)+'.png')
+plt.savefig('image_sparse_gaussian_eucl_sym_100.png')
 
 # Ending time
 end_time = time.time()
