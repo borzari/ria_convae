@@ -2,7 +2,7 @@
 
 The sparse MNIST dataset has this name because it is represented as only the 100 most intense pixels from the MNIST dataset images. What is fed to the network is a 3x100 matrix with the position (x, y) and the intensity I of each pixel in intensity decreasing order.
 
-The representation of this data is closer to the representation of the data from the main project, since, as an example, in the calorimeters, the HEP objects are described by its energy deposited E, its angle \phi  and its pseudo rapidity \eta .
+The representation of this data is closer to the representation of the data from the main project, since, as an example, in the calorimeters, the HEP objects are described by its energy deposited E, its angle \phi  and its pseudorapidity \eta .
 
 The idea here was to test a different reconstruction loss term, since Mean Squared Error (MSE) would need to keep the order of the output pixels exactly like the input pixels. One solution was to test the Euclidean distance from the pixels in 3 different possibilities:
 
