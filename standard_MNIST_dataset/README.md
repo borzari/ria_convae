@@ -4,4 +4,5 @@ This network was build for practicing. It is not optimized at all (learning rate
 
 It provided some interesting results, including for the generation of images.
 
-https://github.com/borzari/ria_convae/blob/master/standard_MNIST_dataset/image_gaussians_100.png
+![alt text](https://github.com/borzari/ria_convae/blob/master/standard_MNIST_dataset/image_gaussians_100.png)
+
