@@ -34,7 +34,7 @@ test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=Fa
 
 print("Files loaded!")
 
-# Convolutional neural network (two convolutional layers)
+# Convolutional Variational Autoencoder
 class ConvNet(nn.Module):
     def __init__(self):
         super(ConvNet, self).__init__()
@@ -63,7 +63,6 @@ class ConvNet(nn.Module):
         out = self.conv3(out)
         out = torch.relu(out)
         out = self.conv4(out)
-#        out = torch.selu(out)
         return out
 
     def reparameterize(self, mean, logvar):
