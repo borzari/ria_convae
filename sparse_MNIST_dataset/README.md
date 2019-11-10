@@ -15,5 +15,3 @@ Also, an output pixel repulsion term was tested, since in the oei case above the
 Two of those three possibilities worked very well for 50 epochs of training (~35 minutes without the repulsive term, ~75 minutes with the repulsive term), including in the image generation step: the sym case without a repulsive term, and the oei case with a repulsive term. The ieo case made some images with intense pixels all over the place.
 
 This network is not optimized in any way (hyperparameters, network architecture, etc.)
-
-OBS: I've preprocessed the data and couldn't upload all the files to this repository. If you want it, just send me an e-mail.
