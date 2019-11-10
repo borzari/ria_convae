@@ -143,7 +143,7 @@ for epoch in range(num_epochs):
     for y in range(num_files):
 
         # Load the train dataset
-        input_train = torch.load('/afs/cern.ch/work/b/borzari/ml/sparse_MNIST_train_dataset_with_intensity/sparse_MNIST_'+str(y)+'.pt').cuda()
+        input_train = torch.load('/sparse_MNIST_dataset/sparse_MNIST_train_dataset_100_pixels/sparse_MNIST_'+str(y)+'.pt').cuda()
 
         # Train
         if epoch + 1 == num_epochs:
@@ -183,7 +183,7 @@ sum = 0
 for y in range(100):
 
     # Load the test dataset
-    input_test = torch.load('/afs/cern.ch/work/b/borzari/ml/sparse_MNIST_test_dataset_with_intensity/sparse_MNIST_'+str(y)+'.pt').cuda()
+    input_test = torch.load('/sparse_MNIST_dataset/sparse_MNIST_test_dataset_100_pixels/sparse_MNIST_'+str(y)+'.pt').cuda()
 
     output_test = model(input_test)
     loss, kl, eucl, rep = compute_loss(model, input_test)
