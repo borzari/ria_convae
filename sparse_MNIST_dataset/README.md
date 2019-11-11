@@ -10,7 +10,7 @@ The idea here was to test a different reconstruction loss term, since Mean Squar
 - getting the minimum of the Euclidean distances of each output pixel with one input pixel, and summing over the input pixels (this possibility will be referred as "ieo"): sum_i min_j (d(x_i, x'_j));
 - getting the symmetrized version of both approaches above (this possibility will be referred as "sym"): 0.5 * sum_i min_j (d(x_j, x'_i)) + 0.5 * sum_i min_j (d(x_i, x'_j));
 
-Also, an output pixel repulsion term was tested, since in the oei case above they tend to cluster into some regions of the image.
+Also, an output pixel repulsion term was tested, since in the oei case above they tend to cluster into some regions of the image: 
 
 Two of those three possibilities worked very well for 50 epochs of training (~35 minutes without the repulsive term, ~75 minutes with the repulsive term), including in the image generation step: the sym case without a repulsive term, and the oei case with a repulsive term. The ieo case made some images with intense pixels all over the place.
 
