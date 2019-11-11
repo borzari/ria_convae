@@ -4,11 +4,11 @@ The sparse MNIST dataset has this name because it is represented as only the 100
 
 This representation is closer to the representation of the data from the main project, since, as an example, in the calorimeters, the HEP objects are described by its energy deposited E, its angle \phi  and its pseudorapidity \eta .
 
-The idea here was to test a different reconstruction loss term, since Mean Squared Error (MSE) would need to keep the order of the output pixels exactly like the input pixels. One solution was to test the Euclidean distance from the pixels in 3 different possibilities:
+The idea here was to test a different reconstruction loss term, since Mean Squared Error (MSE) would need to keep the order of the output pixels exactly like the input pixels. One solution was to test the Euclidean distance from the pixels in 3 different possibilities (x is input, x' is output):
 
-- getting the minimum of the Euclidean distances of each input pixel with one output pixel, and summing over the output pixels (this possibility will be referred as "oei");
-- getting the minimum of the Euclidean distances of each output pixel with one input pixel, and summing over the input pixels (this possibility will be referred as "ieo");
-- getting the symmetrized version of both approaches above (this possibility will be referred as "sym");
+- getting the minimum of the Euclidean distances of each input pixel with one output pixel, and summing over the output pixels (this possibility will be referred as "oei"): sum_i min_j (d(x_j, x'_i));
+- getting the minimum of the Euclidean distances of each output pixel with one input pixel, and summing over the input pixels (this possibility will be referred as "ieo"): sum_i min_j (d(x_i, x'_j));
+- getting the symmetrized version of both approaches above (this possibility will be referred as "sym"): 0.5 * sum_i min_j (d(x_j, x'_i)) + 0.5 * sum_i min_j (d(x_i, x'_j));
 
 Also, an output pixel repulsion term was tested, since in the oei case above they tend to cluster into some regions of the image.
 
