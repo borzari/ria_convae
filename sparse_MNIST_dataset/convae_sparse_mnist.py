@@ -140,6 +140,8 @@ for epoch in range(num_epochs):
     eucl_aux = 0.0
     rep_aux = 0.0
 
+    sum = 0.0
+    
     for y in range(num_files):
 
         # Load the train dataset
@@ -149,7 +151,7 @@ for epoch in range(num_epochs):
         if epoch + 1 == num_epochs:
             output_train = model(input_train)
         loss, kl, eucl, rep = compute_loss(model, input_train)
-        loss_list.append(loss.item())
+        sum += loss.item()
         kl_aux += kl
         eucl_aux += eucl
         rep_aux += rep
@@ -159,7 +161,8 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
 
-    print(epoch,loss.item())
+    print(epoch,sum.item()/num_files)
+    loss_list.append(sum.item()/num_files)
     y_kl[epoch] = kl_aux / num_files
     y_eucl[epoch] = eucl_aux / num_files
     y_rep[epoch] = rep_aux / num_files
