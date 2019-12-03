@@ -16,6 +16,10 @@ After that, a ConVAE for generating standard MNIST dataset images was built. Tra
 
 ### Sparse MNIST Dataset
 
-Right now, I'm working with a ConVAE for the sparse MNIST dataset, that is, what will be fed to the network is a matrix with the positions (x, y) and the intensities (I) of the 100 most intense pixels of the standard MNIST dataset, in intensity decreasing order.
+A ConVAE for the sparse MNIST dataset, that is, what will be fed to the network is a matrix with the positions (x, y) and the intensities (I) of the 100 most intense pixels of the standard MNIST dataset, in intensity decreasing order was build and gave interesting results when comparing only the pixels positions. Something had to be done with respect to the intensities of the pixels.
+
+### Superpixels MNIST dataset
+
+To work with the intensities problem, the MNIST superpixels dataset was used. The pixels with intensity equal to 0 were removed from the dataset, and their intensities were ordered in decreasing order.
 
 ## Main Project
