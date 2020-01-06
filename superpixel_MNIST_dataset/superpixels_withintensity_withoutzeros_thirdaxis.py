@@ -23,16 +23,16 @@ class ConvNet(nn.Module):
     def __init__(self):
         super(ConvNet, self).__init__()
 
-        self.conv1 = nn.Conv2d(1, 16, kernel_size=(1,5), stride=(1), padding=(0))
+        self.conv1 = nn.Conv2d(1, 16, kernel_size=(3,5), stride=(1), padding=(0))
         self.conv2 = nn.Conv2d(16, 32, kernel_size=(1,5), stride=(1), padding=(0))
         self.conv3 = nn.Conv2d(32, 64, kernel_size=(1,5), stride=(1), padding=(0))
         self.conv4 = nn.ConvTranspose2d(64, 32, kernel_size=(1,5), stride=(1), padding=(0))
         self.conv5 = nn.ConvTranspose2d(32, 16, kernel_size=(1,5), stride=(1), padding=(0))
-        self.conv6 = nn.ConvTranspose2d(16, 1, kernel_size=(1,5), stride=(1), padding=(0))
-        self.fc1 = nn.Linear(3 * 13 * 64, 1500)
+        self.conv6 = nn.ConvTranspose2d(16, 1, kernel_size=(3,5), stride=(1), padding=(0))
+        self.fc1 = nn.Linear(1 * 13 * 64, 1500)
         self.fc2 = nn.Linear(1500, 2 * latent_dim)
         self.fc3 = nn.Linear(latent_dim, 1500)
-        self.fc4 = nn.Linear(1500, 3 * 13 * 64)
+        self.fc4 = nn.Linear(1500, 1 * 13 * 64)
 
     def encode(self, x):
         out = self.conv1(x)
@@ -54,7 +54,7 @@ class ConvNet(nn.Module):
         out = torch.relu(out)
         out = self.fc4(out)
         out = torch.relu(out)
-        out = out.view(batch_size, 64, 3, 13)
+        out = out.view(batch_size, 64, 1, 13)
         out = self.conv4(out)
         out = torch.relu(out)
         out = self.conv5(out)
