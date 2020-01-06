@@ -15,6 +15,7 @@ start_time = time.time()
 # Hyperparameters
 num_epochs = 500
 num_classes = 1
+num_pixels = 25
 batch_size = 100
 learning_rate = 0.001
 latent_dim = 10
@@ -29,10 +30,10 @@ class ConvNet(nn.Module):
         self.conv4 = nn.ConvTranspose2d(64, 32, kernel_size=(1,5), stride=(1), padding=(0))
         self.conv5 = nn.ConvTranspose2d(32, 16, kernel_size=(1,5), stride=(1), padding=(0))
         self.conv6 = nn.ConvTranspose2d(16, 1, kernel_size=(3,5), stride=(1), padding=(0))
-        self.fc1 = nn.Linear(1 * 13 * 64, 1500)
+        self.fc1 = nn.Linear(1 * (num_pixels - 12) * 64, 1500)
         self.fc2 = nn.Linear(1500, 2 * latent_dim)
         self.fc3 = nn.Linear(latent_dim, 1500)
-        self.fc4 = nn.Linear(1500, 1 * 13 * 64)
+        self.fc4 = nn.Linear(1500, 1 * (num_pixels - 12) * 64)
 
     def encode(self, x):
         out = self.conv1(x)
@@ -54,7 +55,7 @@ class ConvNet(nn.Module):
         out = torch.relu(out)
         out = self.fc4(out)
         out = torch.relu(out)
-        out = out.view(batch_size, 64, 1, 13)
+        out = out.view(batch_size, 64, 1, (num_pixels - 12))
         out = self.conv4(out)
         out = torch.relu(out)
         out = self.conv5(out)
@@ -81,16 +82,16 @@ def compute_loss(model, x):
 
     pdist = nn.PairwiseDistance(p=2) # Euclidean distance
 
-    x_pos = torch.zeros(batch_size,3,25).cuda()
+    x_pos = torch.zeros(batch_size,3,num_pixels).cuda()
     x_pos = x[:,0,:,:] # Removes the channel dimension to make the following calculations easier
 
-    x_pos = x_pos.view(100, 3, 1, 25) # Changes the dimension of the tensor so that dist is the distance between every pair of input and output pixels
+    x_pos = x_pos.view(100, 3, 1, num_pixels) # Changes the dimension of the tensor so that dist is the distance between every pair of input and output pixels
 
-    x_decoded_pos = torch.zeros(batch_size,3,25).cuda()
+    x_decoded_pos = torch.zeros(batch_size,3,num_pixels).cuda()
     x_decoded_pos = x_decoded[:,0,:,:] # Removes the channel dimension to make the following calculations easier
 
-    x_decoded_pos = x_decoded_pos.view(batch_size, 3, 25, 1) # Changes the dimension of the tensor so that dist is the distance between every pair of input and output pixels
-    x_decoded_pos = torch.repeat_interleave(x_decoded_pos, 25, -1) 
+    x_decoded_pos = x_decoded_pos.view(batch_size, 3, num_pixels, 1) # Changes the dimension of the tensor so that dist is the distance between every pair of input and output pixels
+    x_decoded_pos = torch.repeat_interleave(x_decoded_pos, num_pixels, -1) 
 
     dist = torch.pow(pdist(x_pos, x_decoded_pos),2)
 
