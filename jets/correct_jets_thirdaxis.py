@@ -35,10 +35,10 @@ class ConvNet(nn.Module):
         self.conv4 = nn.ConvTranspose2d(64, 32, kernel_size=(1,5), stride=(1), padding=(0))
         self.conv5 = nn.ConvTranspose2d(32, 16, kernel_size=(1,5), stride=(1), padding=(0))
         self.conv6 = nn.ConvTranspose2d(16, 1, kernel_size=(3,5), stride=(1), padding=(0))
-        self.fc1 = nn.Linear(1 * int(num_particles - 12) * 64, 1000)
-        self.fc2 = nn.Linear(1000, 2 * latent_dim)
-        self.fc3 = nn.Linear(latent_dim, 1000)
-        self.fc4 = nn.Linear(1000, 1 * int(num_particles - 12) * 64)
+        self.fc1 = nn.Linear(1 * int(num_particles - 12) * 64, 1500)
+        self.fc2 = nn.Linear(1500, 2 * latent_dim)
+        self.fc3 = nn.Linear(latent_dim, 1500)
+        self.fc4 = nn.Linear(1500, 1 * int(num_particles - 12) * 64)
 
         self.drop = nn.Dropout(drop_prob)
 
