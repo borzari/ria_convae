@@ -85,7 +85,7 @@ def compute_loss(model, x):
     x_pos = torch.zeros(batch_size,3,num_pixels).cuda()
     x_pos = x[:,0,:,:] # Removes the channel dimension to make the following calculations easier
 
-    x_pos = x_pos.view(100, 3, 1, num_pixels) # Changes the dimension of the tensor so that dist is the distance between every pair of input and output pixels
+    x_pos = x_pos.view(batch_size, 3, 1, num_pixels) # Changes the dimension of the tensor so that dist is the distance between every pair of input and output pixels
 
     x_decoded_pos = torch.zeros(batch_size,3,num_pixels).cuda()
     x_decoded_pos = x_decoded[:,0,:,:] # Removes the channel dimension to make the following calculations easier
