@@ -23,3 +23,5 @@ A ConVAE for the sparse MNIST dataset, that is, what will be fed to the network 
 To work with the intensities problem, the MNIST superpixels dataset was used. The pixels with intensity equal to 0 were removed from the dataset, and their intensities were ordered in decreasing order.
 
 ## Main Project
+
+The description of the main project goes here.
